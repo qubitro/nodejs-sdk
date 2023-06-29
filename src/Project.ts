@@ -31,17 +31,17 @@ class Project {
     }
 }
 
-function getProjects  () {
-    return new Promise(async (resolve, reject) => {
+function getProjects(): Promise<Project[]> {
+    return new Promise<Project[]>(async (resolve, reject) => {
         try {
             const response = await axios.get(`https://api.qubitro.com/v2/projects`, {
                 headers: {
-                    Authorization: getConf().apikey ? `Bearer ${getConf().apikey}`: ''
+                    Authorization: getConf().apikey ? `Bearer ${getConf().apikey}` : ''
                 }
             })
 
-            const projects:Array<Project> = []
-            const body:Array<{id:string,name:string,description:string,created_at:Date}> = response.data.data
+            const projects: Array<Project> = []
+            const body: Array<{ id: string, name: string, description: string, created_at: Date }> = response.data.data
 
             body.forEach(el => {
                 const temp = new Project(el.id, el.name, el.description, el.created_at)
@@ -49,25 +49,25 @@ function getProjects  () {
             })
 
             resolve(projects)
-        } catch (error:any) {
+        } catch (error: any) {
             reject(error.response.data.message ? error.response.data.message : error)
         }
     })
 }
 
-function getProjectById  (projectID:string) {
-    return new Promise(async (resolve, reject) => {
+function getProjectById(projectID: string): Promise<Project> {
+    return new Promise<Project>(async (resolve, reject) => {
         try {
             const response = await axios.get(`https://api.qubitro.com/v2/projects/${projectID}`, {
                 headers: {
-                    Authorization: getConf().apikey ? `Bearer ${getConf().apikey}`: ''
+                    Authorization: getConf().apikey ? `Bearer ${getConf().apikey}` : ''
                 }
             })
 
-           const body:{id:string,name:string,description:string,created:Date}=response.data.data
+            const body: { id: string, name: string, description: string, created: Date } = response.data.data;
 
-            resolve(new Project(body.id,body.name,body.description,body.created))
-        } catch (error:any) {
+            resolve(new Project(body.id, body.name, body.description, body.created));
+        } catch (error: any) {
             reject(error.response.data.message ? error.response.data.message : error)
         }
     })
