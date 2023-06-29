@@ -50,7 +50,7 @@ function getProjects() {
             const projects = [];
             const body = response.data.data;
             body.forEach(el => {
-                const temp = new Project(el.id, el.name, el.description, el.created);
+                const temp = new Project(el.id, el.name, el.description, el.created_at);
                 projects.push(temp);
             });
             resolve(projects);

@@ -41,10 +41,10 @@ function getProjects  () {
             })
 
             const projects:Array<Project> = []
-            const body:Array<{id:string,name:string,description:string,created:Date}> = response.data.data
+            const body:Array<{id:string,name:string,description:string,created_at:Date}> = response.data.data
 
             body.forEach(el => {
-                const temp = new Project(el.id, el.name, el.description, el.created)
+                const temp = new Project(el.id, el.name, el.description, el.created_at)
                 projects.push(temp)
             })
 
