@@ -39,7 +39,7 @@ class Device {
     }
 }
 
-function getDevices  (projectID:string) {
+function getDevices(projectID:string): Promise<Device[]> {
     return new Promise(async (resolve, reject) => {
         try {
             const response = await axios.get(`https://api.qubitro.com/v2/projects/${projectID}/devices`, {
@@ -63,7 +63,7 @@ function getDevices  (projectID:string) {
     })
 }
 
-function getDeviceById  (projectID:string, deviceID:string) {
+function getDeviceById(projectID:string, deviceID:string): Promise<Device> {
     return new Promise(async (resolve, reject) => {
         try {
             const response = await axios.get(`https://api.qubitro.com/v2/projects/${projectID}/devices/${deviceID}`, {
@@ -80,5 +80,6 @@ function getDeviceById  (projectID:string, deviceID:string) {
         }
     })
 }
+
 
 export {Device,getDevices,getDeviceById}
