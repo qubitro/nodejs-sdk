@@ -27,7 +27,7 @@ class Device {
             try {
                 const response = await axios.delete(`https://api.qubitro.com/v2/projects/${this.projectId}/devices/${this.id}`, {
                     headers: {
-                        Authorization: `Bearer ${conf.apikey}`
+                        Authorization: `Bearer ${conf.apikey?conf.apikey:" "}`
                     }
                 })
 
@@ -44,7 +44,7 @@ function getDevices  (projectID:string) {
         try {
             const response = await axios.get(`https://api.qubitro.com/v2/project/${projectID}/devices`, {
                 headers: {
-                    Authorization: `Bearer ${conf.apikey}`
+                    Authorization: `Bearer ${conf.apikey?conf.apikey:" "}`
                 }
             })
 
@@ -68,7 +68,7 @@ function getDeviceById  (projectID:string, deviceID:string) {
         try {
             const response = await axios.get(`https://api.qubitro.com/v2/projects/${projectID}/devices/${deviceID}`, {
                 headers: {
-                    Authorization: `Bearer ${conf.apikey}`
+                    Authorization: `Bearer ${conf.apikey?conf.apikey:" "}`
                 }
             })
 

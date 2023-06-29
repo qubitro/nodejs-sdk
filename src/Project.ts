@@ -19,7 +19,7 @@ class Project {
             try {
                 const response = await axios.delete(`https://api.qubitro.com/v2/projects/${this.id}`, {
                     headers: {
-                        Authorization: `Bearer ${conf.apikey}`
+                        Authorization: `Bearer ${conf.apikey?conf.apikey:" "}`
                     }
                 })
 
@@ -36,7 +36,7 @@ function getProjects  () {
         try {
             const response = await axios.get(`https://api.qubitro.com/v2/projects`, {
                 headers: {
-                    Authorization: `Bearer ${conf.apikey}`
+                    Authorization: `Bearer ${conf.apikey?conf.apikey:" "}`
                 }
             })
 
@@ -60,7 +60,7 @@ function getProjectById  (projectID:string) {
         try {
             const response = await axios.get(`https://api.qubitro.com/v2/projects/${projectID}`, {
                 headers: {
-                    Authorization: `Bearer ${conf.apikey}`
+                    Authorization: `Bearer ${conf.apikey?conf.apikey:" "}`
                 }
             })
 
