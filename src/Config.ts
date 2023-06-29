@@ -6,7 +6,7 @@ class Config {
     }
 }
 
-var conf = new Config(process.env.QUBITRO_API_KEY?process.env.QUBITRO_API_KEY:"")
+let conf = new Config(process.env.QUBITRO_API_KEY?process.env.QUBITRO_API_KEY:"")
 
 function init (config:{apikey:string}) {
     conf = new Config(config.apikey)
