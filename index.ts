@@ -3,4 +3,4 @@ import {getData,getDataByKeys,getDataByTime,getDataByTimeAndKeys,getDataKeys} fr
 import {Device,getDevices,getDeviceById} from "./src/Device"
 import {Project,getProjects,getProjectById} from "./src/Project"
 
-export{Config,init,getData,getDataByKeys,getDataByTimeAndKeys,getDataKeys,Device,getDevices,getDeviceById,Project,getProjects,getProjectById}
+export{Config,init,getData,getDataByKeys,getDataByTime,getDataByTimeAndKeys,getDataKeys,Device,getDevices,getDeviceById,Project,getProjects,getProjectById}
