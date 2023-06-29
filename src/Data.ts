@@ -6,7 +6,7 @@ function fetchDeviceData  (projectID:string, deviceID:string, params:Object) {
         try {
             const response = await axios.get(`https://api.qubitro.com/v2/projects/${projectID}/devices/${deviceID}/data`, {
                 headers: {
-                    Authorization: `Bearer ${conf.apikey?conf.apikey:" "}`
+                    Authorization: conf.apikey ? `Bearer ${conf.apikey}`: ''
                 },
 
                 params: params
@@ -86,7 +86,7 @@ function getDataKeys  (projectID:string, deviceID:string) {
         try {
             const response = await axios.get(`https://api.qubitro.com/v2/projects/${projectID}/devices/${deviceID}/data/keys`, {
                 headers: {
-                    Authorization: `Bearer ${conf.apikey?conf.apikey:" "}`
+                    Authorization: conf.apikey ? `Bearer ${conf.apikey}`: ''
                 }
             })
 
@@ -102,7 +102,7 @@ function deleteDataByDeviceId  (projectID:string, deviceID:string) {
         try {
             const response = await axios.delete(`https://api.qubitro.com/v2/projects/${projectID}/devices/${deviceID}/data`, {
                 headers: {
-                    Authorization: `Bearer ${conf.apikey?conf.apikey:" "}`
+                    Authorization: conf.apikey ? `Bearer ${conf.apikey}`: ''
                 }
             })
 

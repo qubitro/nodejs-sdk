@@ -27,7 +27,7 @@ class Project {
             try {
                 const response = yield axios_1.default.delete(`https://api.qubitro.com/v2/projects/${this.id}`, {
                     headers: {
-                        Authorization: `Bearer ${Config_1.conf.apikey ? Config_1.conf.apikey : " "}`
+                        Authorization: Config_1.conf.apikey ? `Bearer ${Config_1.conf.apikey}` : ''
                     }
                 });
                 resolve(response.data.message);
@@ -44,7 +44,7 @@ function getProjects() {
         try {
             const response = yield axios_1.default.get(`https://api.qubitro.com/v2/projects`, {
                 headers: {
-                    Authorization: `Bearer ${Config_1.conf.apikey ? Config_1.conf.apikey : " "}`
+                    Authorization: Config_1.conf.apikey ? `Bearer ${Config_1.conf.apikey}` : ''
                 }
             });
             const projects = [];
@@ -66,7 +66,7 @@ function getProjectById(projectID) {
         try {
             const response = yield axios_1.default.get(`https://api.qubitro.com/v2/projects/${projectID}`, {
                 headers: {
-                    Authorization: `Bearer ${Config_1.conf.apikey ? Config_1.conf.apikey : " "}`
+                    Authorization: Config_1.conf.apikey ? `Bearer ${Config_1.conf.apikey}` : ''
                 }
             });
             const body = response.data.data;
