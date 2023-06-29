@@ -1,6 +1,6 @@
 {
-  "name": "@qubitro/qubitro",
-  "version": "1.0.13",
+  "name": "@qubitro/client",
+  "version": "1.0.0",
   "description": "Qubitro Device Data Platform SDK",
   "main": "index.js",
   "scripts": {
