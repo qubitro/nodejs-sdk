@@ -1,5 +1,5 @@
 import axios from "axios"
-import {conf} from "./Config"
+import {getConf} from "./Config"
 
 class Project {
  id:string
@@ -19,7 +19,7 @@ class Project {
             try {
                 const response = await axios.delete(`https://api.qubitro.com/v2/projects/${this.id}`, {
                     headers: {
-                        Authorization: conf.apikey ? `Bearer ${conf.apikey}`: ''
+                        Authorization: getConf().apikey ? `Bearer ${getConf().apikey}`: ''
                     }
                 })
 
@@ -36,7 +36,7 @@ function getProjects  () {
         try {
             const response = await axios.get(`https://api.qubitro.com/v2/projects`, {
                 headers: {
-                    Authorization: conf.apikey ? `Bearer ${conf.apikey}`: ''
+                    Authorization: getConf().apikey ? `Bearer ${getConf().apikey}`: ''
                 }
             })
 
@@ -60,7 +60,7 @@ function getProjectById  (projectID:string) {
         try {
             const response = await axios.get(`https://api.qubitro.com/v2/projects/${projectID}`, {
                 headers: {
-                    Authorization: conf.apikey ? `Bearer ${conf.apikey}`: ''
+                    Authorization: getConf().apikey ? `Bearer ${getConf().apikey}`: ''
                 }
             })
 

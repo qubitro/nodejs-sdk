@@ -1,5 +1,5 @@
 import axios from "axios"
-import {conf} from "./Config"
+import {getConf} from "./Config"
 
 class Device {
  id:string
@@ -27,7 +27,7 @@ class Device {
             try {
                 const response = await axios.delete(`https://api.qubitro.com/v2/projects/${this.projectId}/devices/${this.id}`, {
                     headers: {
-                        Authorization: conf.apikey ? `Bearer ${conf.apikey}`: ''
+                        Authorization: getConf().apikey ? `Bearer ${getConf().apikey}`: ''
                     }
                 })
 
@@ -44,7 +44,7 @@ function getDevices  (projectID:string) {
         try {
             const response = await axios.get(`https://api.qubitro.com/v2/projects/${projectID}/devices`, {
                 headers: {
-                    Authorization: conf.apikey ? `Bearer ${conf.apikey}`: ''
+                    Authorization: getConf().apikey ? `Bearer ${getConf().apikey}`: ''
                 }
             })
 
@@ -68,7 +68,7 @@ function getDeviceById  (projectID:string, deviceID:string) {
         try {
             const response = await axios.get(`https://api.qubitro.com/v2/projects/${projectID}/devices/${deviceID}`, {
                 headers: {
-                    Authorization: conf.apikey ? `Bearer ${conf.apikey}`: ''
+                    Authorization: getConf().apikey ? `Bearer ${getConf().apikey}`: ''
                 }
             })
 

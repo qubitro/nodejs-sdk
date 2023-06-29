@@ -1,12 +1,12 @@
 import axios from "axios"
-import { conf } from "./Config"
+import { getConf } from "./Config"
 
 function fetchDeviceData  (projectID:string, deviceID:string, params:Object) {
     return new Promise(async (resolve, reject) => {
         try {
             const response = await axios.get(`https://api.qubitro.com/v2/projects/${projectID}/devices/${deviceID}/data`, {
                 headers: {
-                    Authorization: conf.apikey ? `Bearer ${conf.apikey}`: ''
+                    Authorization: getConf().apikey ? `Bearer ${getConf().apikey}`: ''
                 },
 
                 params: params
@@ -86,7 +86,7 @@ function getDataKeys  (projectID:string, deviceID:string) {
         try {
             const response = await axios.get(`https://api.qubitro.com/v2/projects/${projectID}/devices/${deviceID}/data/keys`, {
                 headers: {
-                    Authorization: conf.apikey ? `Bearer ${conf.apikey}`: ''
+                    Authorization: getConf().apikey ? `Bearer ${getConf().apikey}`: ''
                 }
             })
 
@@ -102,7 +102,7 @@ function deleteDataByDeviceId  (projectID:string, deviceID:string) {
         try {
             const response = await axios.delete(`https://api.qubitro.com/v2/projects/${projectID}/devices/${deviceID}/data`, {
                 headers: {
-                    Authorization: conf.apikey ? `Bearer ${conf.apikey}`: ''
+                    Authorization: getConf().apikey ? `Bearer ${getConf().apikey}`: ''
                 }
             })
 

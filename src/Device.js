@@ -31,7 +31,7 @@ class Device {
             try {
                 const response = yield axios_1.default.delete(`https://api.qubitro.com/v2/projects/${this.projectId}/devices/${this.id}`, {
                     headers: {
-                        Authorization: Config_1.conf.apikey ? `Bearer ${Config_1.conf.apikey}` : ''
+                        Authorization: (0, Config_1.getConf)().apikey ? `Bearer ${(0, Config_1.getConf)().apikey}` : ''
                     }
                 });
                 resolve(response.data.message);
@@ -48,7 +48,7 @@ function getDevices(projectID) {
         try {
             const response = yield axios_1.default.get(`https://api.qubitro.com/v2/projects/${projectID}/devices`, {
                 headers: {
-                    Authorization: Config_1.conf.apikey ? `Bearer ${Config_1.conf.apikey}` : ''
+                    Authorization: (0, Config_1.getConf)().apikey ? `Bearer ${(0, Config_1.getConf)().apikey}` : ''
                 }
             });
             const devices = [];
@@ -70,7 +70,7 @@ function getDeviceById(projectID, deviceID) {
         try {
             const response = yield axios_1.default.get(`https://api.qubitro.com/v2/projects/${projectID}/devices/${deviceID}`, {
                 headers: {
-                    Authorization: Config_1.conf.apikey ? `Bearer ${Config_1.conf.apikey}` : ''
+                    Authorization: (0, Config_1.getConf)().apikey ? `Bearer ${(0, Config_1.getConf)().apikey}` : ''
                 }
             });
             const body = response.data.data;

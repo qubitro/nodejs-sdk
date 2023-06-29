@@ -12,4 +12,8 @@ function init (config:{apikey:string}) {
     conf = new Config(config.apikey)
 }
 
-export {Config,conf,init}
+function getConf() {
+    return conf
+}
+
+export {init,getConf}

@@ -1,8 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getProjectById = exports.getProjects = exports.Project = exports.getDeviceById = exports.getDevices = exports.Device = exports.getDataKeys = exports.getDataByTimeAndKeys = exports.getDataByTime = exports.getDataByKeys = exports.getData = exports.init = exports.Config = void 0;
+exports.getProjectById = exports.getProjects = exports.Project = exports.getDeviceById = exports.getDevices = exports.Device = exports.getDataKeys = exports.getDataByTimeAndKeys = exports.getDataByTime = exports.getDataByKeys = exports.getData = exports.init = void 0;
 const Config_1 = require("./src/Config");
-Object.defineProperty(exports, "Config", { enumerable: true, get: function () { return Config_1.Config; } });
 Object.defineProperty(exports, "init", { enumerable: true, get: function () { return Config_1.init; } });
 const Data_1 = require("./src/Data");
 Object.defineProperty(exports, "getData", { enumerable: true, get: function () { return Data_1.getData; } });
