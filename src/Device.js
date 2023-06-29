@@ -46,7 +46,7 @@ exports.Device = Device;
 function getDevices(projectID) {
     return new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {
         try {
-            const response = yield axios_1.default.get(`https://api.qubitro.com/v2/project/${projectID}/devices`, {
+            const response = yield axios_1.default.get(`https://api.qubitro.com/v2/projects/${projectID}/devices`, {
                 headers: {
                     Authorization: Config_1.conf.apikey ? `Bearer ${Config_1.conf.apikey}` : ''
                 }

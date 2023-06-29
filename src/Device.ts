@@ -42,7 +42,7 @@ class Device {
 function getDevices  (projectID:string) {
     return new Promise(async (resolve, reject) => {
         try {
-            const response = await axios.get(`https://api.qubitro.com/v2/project/${projectID}/devices`, {
+            const response = await axios.get(`https://api.qubitro.com/v2/projects/${projectID}/devices`, {
                 headers: {
                     Authorization: conf.apikey ? `Bearer ${conf.apikey}`: ''
                 }
