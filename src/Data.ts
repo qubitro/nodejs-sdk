@@ -19,7 +19,7 @@ function fetchDeviceData  (projectID:string, deviceID:string, params:Object) {
     })
 }
 
-function getData (projectID:string, deviceID:string, page:string, limit:string) {
+function getData (projectID:string, deviceID:string, page:number, limit:number) {
     const params = {
         page: page,
         limit: limit,
