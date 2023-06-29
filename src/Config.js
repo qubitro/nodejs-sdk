@@ -10,6 +10,6 @@ exports.Config = Config;
 var conf = new Config(process.env.QUBITRO_API_KEY ? process.env.QUBITRO_API_KEY : "");
 exports.conf = conf;
 function init(config) {
-    exports.conf = conf = config;
+    exports.conf = conf = new Config(config.apikey);
 }
 exports.init = init;

@@ -8,8 +8,8 @@ class Config {
 
 var conf = new Config(process.env.QUBITRO_API_KEY?process.env.QUBITRO_API_KEY:"")
 
-function init (config:Config) {
-    conf = config
+function init (config:{apikey:string}) {
+    conf = new Config(config.apikey)
 }
 
 export {Config,conf,init}
