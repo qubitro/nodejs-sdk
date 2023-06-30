@@ -1,30 +1,35 @@
 import axios from "axios"
-import {getConf} from "./Config"
+import { getConf, Err } from "./Config"
 
 class Project {
- id:string
- name:string
- description:string
- created:Date
+    id: string
+    name: string
+    description: string
+    created: Date
 
-    constructor(id:string, name:string, description:string, created:Date) {
+    constructor(id: string, name: string, description: string, created: Date) {
         this.id = id
         this.name = name
         this.description = description
         this.created = created
     }
 
-    delete() {
+    delete(): Promise<string> {
         return new Promise(async (resolve, reject) => {
             try {
                 const response = await axios.delete(`https://api.qubitro.com/v2/projects/${this.id}`, {
                     headers: {
-                        Authorization: getConf().apikey ? `Bearer ${getConf().apikey}`: ''
+                        Authorization: getConf().apikey ? `Bearer ${getConf().apikey}` : ''
                     }
                 })
                 resolve(response.data.message)
-            } catch (error:any) {
-                reject(error.response.data.message ? error.response.data.message : error)
+            } catch (error: any) {
+                if (!error.response.data) {
+                    reject(new Err(418, error.message))
+                    return
+                }
+
+                reject(new Err(error.response.data.stauts, error.response.data.message))
             }
         })
     }
@@ -48,7 +53,12 @@ function getProjects(): Promise<Project[]> {
 
             resolve(projects)
         } catch (error: any) {
-            reject(error.response.data.message ? error.response.data.message : error)
+            if (!error.response.data) {
+                reject(new Err(418, error.message))
+                return
+            }
+
+            reject(new Err(error.response.data.stauts, error.response.data.message))
         }
     })
 }
@@ -66,10 +76,15 @@ function getProjectById(projectID: string): Promise<Project> {
 
             resolve(body);
         } catch (error: any) {
-            reject(error.response.data.message ? error.response.data.message : error)
+            if (!error.response.data) {
+                reject(new Err(418, error.message))
+                return
+            }
+
+            reject(new Err(error.response.data.stauts, error.response.data.message))
         }
     })
 }
 
 
-export {Project,getProjects,getProjectById}
+export { Project, getProjects, getProjectById }

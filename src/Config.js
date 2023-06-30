@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getConf = exports.init = void 0;
+exports.Err = exports.getConf = exports.init = void 0;
 class Config {
     constructor(apikey) {
         this.apikey = apikey;
@@ -15,3 +15,10 @@ function getConf() {
     return conf;
 }
 exports.getConf = getConf;
+class Err {
+    constructor(status, message) {
+        this.status = status;
+        this.message = message;
+    }
+}
+exports.Err = Err;

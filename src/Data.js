@@ -17,18 +17,28 @@ const axios_1 = __importDefault(require("axios"));
 const Config_1 = require("./Config");
 function fetchDeviceData(projectID, deviceID, params) {
     return __awaiter(this, void 0, void 0, function* () {
-        try {
-            const response = yield axios_1.default.get(`https://api.qubitro.com/v2/projects/${projectID}/devices/${deviceID}/data`, {
-                headers: {
-                    Authorization: (0, Config_1.getConf)().apikey ? `Bearer ${(0, Config_1.getConf)().apikey}` : ''
-                },
-                params: params
-            });
-            return response.data.data;
-        }
-        catch (error) {
-            throw error.response.data.message ? error.response.data.message : error;
-        }
+        return new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const response = yield axios_1.default.get(`https://api.qubitro.com/v2/projects/${projectID}/devices/${deviceID}/data`, {
+                    headers: {
+                        Authorization: (0, Config_1.getConf)().apikey ? `Bearer ${(0, Config_1.getConf)().apikey}` : ''
+                    },
+                    params: params
+                });
+                const result = [];
+                response.data.data.forEach((el) => {
+                    result.push(el);
+                });
+                resolve(result);
+            }
+            catch (error) {
+                if (!error.response.data) {
+                    reject(new Config_1.Err(418, error.message));
+                    return;
+                }
+                reject(new Config_1.Err(error.response.data.stauts, error.response.data.message));
+            }
+        }));
     });
 }
 function getData(projectID, deviceID, page, limit) {
@@ -38,7 +48,7 @@ function getData(projectID, deviceID, page, limit) {
             limit: limit,
             range: "all"
         };
-        return yield fetchDeviceData(projectID, deviceID, params);
+        return fetchDeviceData(projectID, deviceID, params);
     });
 }
 exports.getData = getData;
@@ -51,7 +61,7 @@ function getDataByKeys(projectID, deviceID, page, limit, keys) {
             range: "all",
             keys: keysParam
         };
-        return yield fetchDeviceData(projectID, deviceID, params);
+        return fetchDeviceData(projectID, deviceID, params);
     });
 }
 exports.getDataByKeys = getDataByKeys;
@@ -64,7 +74,7 @@ function getDataByTime(projectID, deviceID, page, limit, start, end) {
             start: start,
             end: end
         };
-        return yield fetchDeviceData(projectID, deviceID, params);
+        return fetchDeviceData(projectID, deviceID, params);
     });
 }
 exports.getDataByTime = getDataByTime;
@@ -79,23 +89,33 @@ function getDataByTimeAndKeys(projectID, deviceID, page, limit, start, end, keys
             end: end,
             keys: keysParam
         };
-        return yield fetchDeviceData(projectID, deviceID, params);
+        return fetchDeviceData(projectID, deviceID, params);
     });
 }
 exports.getDataByTimeAndKeys = getDataByTimeAndKeys;
 function getDataKeys(projectID, deviceID) {
     return __awaiter(this, void 0, void 0, function* () {
-        try {
-            const response = yield axios_1.default.get(`https://api.qubitro.com/v2/projects/${projectID}/devices/${deviceID}/data/keys`, {
-                headers: {
-                    Authorization: (0, Config_1.getConf)().apikey ? `Bearer ${(0, Config_1.getConf)().apikey}` : ''
+        return new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const response = yield axios_1.default.get(`https://api.qubitro.com/v2/projects/${projectID}/devices/${deviceID}/data/keys`, {
+                    headers: {
+                        Authorization: (0, Config_1.getConf)().apikey ? `Bearer ${(0, Config_1.getConf)().apikey}` : ''
+                    }
+                });
+                const result = [];
+                response.data.data.forEach((el) => {
+                    result.push(el);
+                });
+                resolve(result);
+            }
+            catch (error) {
+                if (!error.response.data) {
+                    reject(new Config_1.Err(418, error.message));
+                    return;
                 }
-            });
-            return response.data.data;
-        }
-        catch (error) {
-            throw error.response.data.message ? error.response.data.message : error;
-        }
+                reject(new Config_1.Err(error.response.data.stauts, error.response.data.message));
+            }
+        }));
     });
 }
 exports.getDataKeys = getDataKeys;
@@ -110,7 +130,11 @@ function deleteDataByDeviceId(projectID, deviceID) {
             resolve(response.data.message);
         }
         catch (error) {
-            reject(error.response.data.message ? error.response.data.message : error);
+            if (!error.response.data) {
+                reject(new Config_1.Err(418, error.message));
+                return;
+            }
+            reject(new Config_1.Err(error.response.data.stauts, error.response.data.message));
         }
     }));
 }
