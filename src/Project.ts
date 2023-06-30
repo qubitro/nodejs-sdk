@@ -22,7 +22,6 @@ class Project {
                         Authorization: getConf().apikey ? `Bearer ${getConf().apikey}`: ''
                     }
                 })
-
                 resolve(response.data.message)
             } catch (error:any) {
                 reject(error.response.data.message ? error.response.data.message : error)
@@ -41,11 +40,10 @@ function getProjects(): Promise<Project[]> {
             })
 
             const projects: Array<Project> = []
-            const body: Array<{ id: string, name: string, description: string, created_at: Date }> = response.data.data
+            const body: Array<Project> = response.data.data
 
             body.forEach(el => {
-                const temp = new Project(el.id, el.name, el.description, el.created_at)
-                projects.push(temp)
+                projects.push(el)
             })
 
             resolve(projects)
@@ -64,13 +62,14 @@ function getProjectById(projectID: string): Promise<Project> {
                 }
             })
 
-            const body: { id: string, name: string, description: string, created: Date } = response.data.data;
+            const body: Project = response.data.data;
 
-            resolve(new Project(body.id, body.name, body.description, body.created));
+            resolve(body);
         } catch (error: any) {
             reject(error.response.data.message ? error.response.data.message : error)
         }
     })
 }
+
 
 export {Project,getProjects,getProjectById}

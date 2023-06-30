@@ -49,11 +49,10 @@ function getDevices(projectID:string): Promise<Device[]> {
             })
 
             const devices:Array<Device> = []
-            const body:Array<{id:string,name:string,description:string,brand:string,model:string,avatar:string,last_seen:Date}> = response.data.data
+            const body:Array<Device> = response.data.data
 
             body.forEach(el => {
-                const temp = new Device(el.id, el.name, el.description, el.brand, el.model, el.avatar, el.last_seen, projectID)
-                devices.push(temp)
+                devices.push(el)
             })
 
             resolve(devices)
@@ -72,9 +71,9 @@ function getDeviceById(projectID:string, deviceID:string): Promise<Device> {
                 }
             })
 
-           const body:{id:string,name:string,description:string,brand:string,model:string,avatar:string,last_seen:Date}=response.data.data
+           const body:Device=response.data.data
 
-            resolve(new Device(body.id,body.name,body.description,body.brand,body.model,body.avatar,body.last_seen,projectID))
+            resolve(body)
         } catch (error:any) {
             reject(error.response.data.message ? error.response.data.message : error)
         }

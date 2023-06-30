@@ -50,8 +50,7 @@ function getProjects() {
             const projects = [];
             const body = response.data.data;
             body.forEach(el => {
-                const temp = new Project(el.id, el.name, el.description, el.created_at);
-                projects.push(temp);
+                projects.push(el);
             });
             resolve(projects);
         }
@@ -70,7 +69,7 @@ function getProjectById(projectID) {
                 }
             });
             const body = response.data.data;
-            resolve(new Project(body.id, body.name, body.description, body.created));
+            resolve(body);
         }
         catch (error) {
             reject(error.response.data.message ? error.response.data.message : error);

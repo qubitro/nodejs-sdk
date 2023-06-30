@@ -54,8 +54,7 @@ function getDevices(projectID) {
             const devices = [];
             const body = response.data.data;
             body.forEach(el => {
-                const temp = new Device(el.id, el.name, el.description, el.brand, el.model, el.avatar, el.last_seen, projectID);
-                devices.push(temp);
+                devices.push(el);
             });
             resolve(devices);
         }
@@ -74,7 +73,7 @@ function getDeviceById(projectID, deviceID) {
                 }
             });
             const body = response.data.data;
-            resolve(new Device(body.id, body.name, body.description, body.brand, body.model, body.avatar, body.last_seen, projectID));
+            resolve(body);
         }
         catch (error) {
             reject(error.response.data.message ? error.response.data.message : error);
