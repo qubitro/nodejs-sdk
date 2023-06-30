@@ -29,7 +29,7 @@ class Project {
                     return
                 }
 
-                reject(new Err(error.response.data.stauts, error.response.data.message))
+                reject(new Err(error.response.data.status, error.response.data.message))
             }
         })
     }
@@ -58,7 +58,7 @@ function getProjects(): Promise<Project[]> {
                 return
             }
 
-            reject(new Err(error.response.data.stauts, error.response.data.message))
+            reject(new Err(error.response.data.status, error.response.data.message))
         }
     })
 }
@@ -81,7 +81,7 @@ function getProjectById(projectID: string): Promise<Project> {
                 return
             }
 
-            reject(new Err(error.response.data.stauts, error.response.data.message))
+            reject(new Err(error.response.data.status, error.response.data.message))
         }
     })
 }

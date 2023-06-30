@@ -38,7 +38,7 @@ class Device {
                     return
                 }
 
-                reject(new Err(error.response.data.stauts, error.response.data.message))
+                reject(new Err(error.response.data.status, error.response.data.message))
             }
         })
     }
@@ -67,7 +67,7 @@ function getDevices(projectID: string): Promise<Device[]> {
                 return
             }
 
-            reject(new Err(error.response.data.stauts, error.response.data.message))
+            reject(new Err(error.response.data.status, error.response.data.message))
         }
     })
 }
@@ -90,7 +90,7 @@ function getDeviceById(projectID: string, deviceID: string): Promise<Device> {
                 return
             }
 
-            reject(new Err(error.response.data.stauts, error.response.data.message))
+            reject(new Err(error.response.data.status, error.response.data.message))
         }
     })
 }

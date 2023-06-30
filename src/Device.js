@@ -41,7 +41,7 @@ class Device {
                     reject(new Config_1.Err(418, error.message));
                     return;
                 }
-                reject(new Config_1.Err(error.response.data.stauts, error.response.data.message));
+                reject(new Config_1.Err(error.response.data.status, error.response.data.message));
             }
         }));
     }
@@ -67,7 +67,7 @@ function getDevices(projectID) {
                 reject(new Config_1.Err(418, error.message));
                 return;
             }
-            reject(new Config_1.Err(error.response.data.stauts, error.response.data.message));
+            reject(new Config_1.Err(error.response.data.status, error.response.data.message));
         }
     }));
 }
@@ -88,7 +88,7 @@ function getDeviceById(projectID, deviceID) {
                 reject(new Config_1.Err(418, error.message));
                 return;
             }
-            reject(new Config_1.Err(error.response.data.stauts, error.response.data.message));
+            reject(new Config_1.Err(error.response.data.status, error.response.data.message));
         }
     }));
 }

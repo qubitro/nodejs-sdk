@@ -24,7 +24,7 @@ async function fetchDeviceData(projectID: string, deviceID: string, params: Obje
         return
       }
 
-      reject(new Err(error.response.data.stauts, error.response.data.message))
+      reject(new Err(error.response.data.status, error.response.data.message))
     }
   });
 }
@@ -100,7 +100,7 @@ async function getDataKeys(projectID: string, deviceID: string): Promise<string[
         return
       }
 
-      reject(new Err(error.response.data.stauts, error.response.data.message))
+      reject(new Err(error.response.data.status, error.response.data.message))
     }
   })
 }
@@ -121,7 +121,7 @@ function deleteDataByDeviceId(projectID: string, deviceID: string): Promise<stri
         return
       }
 
-      reject(new Err(error.response.data.stauts, error.response.data.message))
+      reject(new Err(error.response.data.status, error.response.data.message))
     }
   })
 }
