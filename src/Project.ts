@@ -5,13 +5,13 @@ class Project {
     id: string
     name: string
     description: string
-    created: Date
+    created_at: Date
 
-    constructor(id: string, name: string, description: string, created: Date) {
+    constructor(id: string, name: string, description: string, created_at: Date) {
         this.id = id
         this.name = name
         this.description = description
-        this.created = created
+        this.created_at = created_at
     }
 
     delete(): Promise<string> {
