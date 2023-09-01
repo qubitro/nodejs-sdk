@@ -1,12 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Err = exports.getConf = exports.init = void 0;
-class Config {
-    constructor(apikey) {
+var Config = /** @class */ (function () {
+    function Config(apikey) {
         this.apikey = apikey;
     }
-}
-let conf = new Config(process.env.QUBITRO_API_KEY ? process.env.QUBITRO_API_KEY : "");
+    return Config;
+}());
+var conf;
 function init(config) {
     conf = new Config(config.apikey);
 }
@@ -15,10 +16,11 @@ function getConf() {
     return conf;
 }
 exports.getConf = getConf;
-class Err {
-    constructor(status, message) {
+var Err = /** @class */ (function () {
+    function Err(status, message) {
         this.status = status;
         this.message = message;
     }
-}
+    return Err;
+}());
 exports.Err = Err;

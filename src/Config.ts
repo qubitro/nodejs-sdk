@@ -1,14 +1,14 @@
 class Config {
     public apikey: string
 
-    constructor(apikey:string){
-        this.apikey=apikey
+    constructor(apikey: string) {
+        this.apikey = apikey
     }
 }
 
-let conf = new Config(process.env.QUBITRO_API_KEY?process.env.QUBITRO_API_KEY:"")
+let conf: Config
 
-function init (config:{apikey:string}) {
+function init(config: { apikey: string }) {
     conf = new Config(config.apikey)
 }
 
@@ -18,12 +18,12 @@ function getConf() {
 
 class Err {
     public status: number
-    public message:string
+    public message: string
 
-    constructor(status: number,message:string){
-        this.status=status
-        this.message=message
+    constructor(status: number, message: string) {
+        this.status = status
+        this.message = message
     }
 }
 
-export {init,getConf,Err}
+export { init, getConf, Err }
